@@ -22,7 +22,6 @@ namespace Test.Controllers
         public ActionResult Details(int id)
         {
             var team = db.Teams.Single(t => t.ID == id);
-
             return View(team.ToDetailsVM(db));
         }
 
@@ -30,7 +29,6 @@ namespace Test.Controllers
         public ActionResult Details(DetailsViewModel detailsVM)
         {
             detailsVM.UpdateCorrespondingTeam(db);
-
             return RedirectToAction("Details", detailsVM.ID);
         }
     }
