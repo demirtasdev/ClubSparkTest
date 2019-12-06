@@ -14,8 +14,11 @@ namespace Test.Controllers
     {
         public readonly Sportslabs db = new Sportslabs();
 
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
+            if(id.HasValue)
+                ViewBag.TeamName = db.Teams.Single(t => t.ID == id).Name;
+
             return View(db.Teams.ToList());
         }
 
@@ -29,7 +32,7 @@ namespace Test.Controllers
         public ActionResult Details(DetailsViewModel detailsVM)
         {
             detailsVM.UpdateCorrespondingTeam(db);
-            return RedirectToAction("Details", detailsVM.ID);
+            return RedirectToAction("Index", new { id = detailsVM.ID });
         }
     }
 }

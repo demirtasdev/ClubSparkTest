@@ -4,7 +4,15 @@
     ViewBag.Title = "Index";
 }
 
+@if(!String.IsNullOrEmpty(ViewBag.TeamName))
+{
+    <div class="w-100 bg-warning py-3 text-center font-weight-bold mb-3">
+        You changes for <em>@ViewBag.TeamName</em> have been saved!
+    </div>
+}
+
 <h2 class="mb-3">Clubs</h2>
+
 <table class="table">
     <tr>
         <th>
@@ -19,21 +27,22 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Country)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Eliminated)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Eliminated)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.ID })
+            </td>
+        </tr>
+    }
 
 </table>
