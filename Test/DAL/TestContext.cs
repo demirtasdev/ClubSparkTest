@@ -6,9 +6,9 @@ namespace Test.Models
     using System.Linq;
     using System.Data.Entity.ModelConfiguration.Conventions;
 
-    public partial class Sportslabs : DbContext
+    public partial class TestContext : DbContext
     {
-        public Sportslabs()
+        public TestContext()
             : base("name=Sportslabs")
         {
         }

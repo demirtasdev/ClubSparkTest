@@ -12,7 +12,7 @@ namespace Test.Controllers
 {
     public class HomeController : Controller
     {
-        public readonly Sportslabs db = new Sportslabs();
+        public readonly TestContext db = new TestContext();
 
         public ActionResult Index(int? id)
         {

@@ -7,9 +7,9 @@ using Test.ViewModels;
 
 namespace ExtensionMethods
 {
-    public static class TestExtensions
+    public static class TeamExtensions
     {
-        public static DetailsViewModel ToDetailsVM(this Team team, Sportslabs db)
+        public static DetailsViewModel ToDetailsVM(this Team team, TestContext db)
         {
             var detailsVM = new DetailsViewModel
             {
@@ -30,8 +30,7 @@ namespace ExtensionMethods
             return detailsVM;
         }
 
-
-        public static void UpdateCorrespondingTeam(this DetailsViewModel detailsVM, Sportslabs db)
+        public static void UpdateCorrespondingTeam(this DetailsViewModel detailsVM, TestContext db)
         {
             db.Teams.Remove(db.Teams.SingleOrDefault(t => t.ID == detailsVM.ID));
 
