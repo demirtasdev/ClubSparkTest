@@ -1,10 +1,12 @@
-﻿using System;
+﻿using ExtensionMethods;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Test.Models;
 using Test.ViewModels;
+
 
 namespace Test.Controllers
 {
@@ -14,14 +16,12 @@ namespace Test.Controllers
 
         public ActionResult Index()
         {
-            var teams = db.Teams.ToList();
-
-            return View(teams);
+            return View(db.Teams.ToList());
         }
 
         public ActionResult Details(int id)
         {
-            var team = db.Teams.SingleOrDefault(t => t.ID == id);
+            var team = db.Teams.Single(t => t.ID == id);
 
             return View(team.ToDetailsVM(db));
         }
@@ -29,7 +29,7 @@ namespace Test.Controllers
         [HttpPost]
         public ActionResult Details(DetailsViewModel detailsVM)
         {
-            Team.SaveFromDetailsVM(detailsVM, db);
+            detailsVM.UpdateCorrespondingTeam(db);
 
             return RedirectToAction("Details", detailsVM.ID);
         }

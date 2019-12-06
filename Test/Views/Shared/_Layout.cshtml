@@ -8,23 +8,16 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Sportslabs Tech", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
+    <nav class="navbar navbar-dark bg-dark mb-3">
+        <div class="container d-flex justify-content-end">
+            <h1 class="navbar-brand mb-0">ClubSpark</h1>
         </div>
-    </div>
+    </nav>
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - ClubSpark Test</p>
         </footer>
     </div>
 

@@ -8,6 +8,7 @@ namespace Test.Models
     using System.Linq;
     using System.Web.Mvc;
     using Test.ViewModels;
+    using ExtensionMethods;
 
     [Table("Team")]
     public partial class Team
@@ -27,41 +28,5 @@ namespace Test.Models
         [Key]
         [Column(Order = 4)]
         public bool Eliminated { get; set; }
-
-        public static void SaveFromDetailsVM(DetailsViewModel detailsVM, Sportslabs db)
-        {
-            db.Teams.Remove(db.Teams.SingleOrDefault(t => t.ID == detailsVM.ID));
-
-            db.Teams.Add(new Team
-            {
-                ID = detailsVM.ID,
-                Name = detailsVM.Name,
-                Country = detailsVM.Country,
-                Eliminated = detailsVM.Eliminated
-            });
-
-            db.SaveChanges();
-        }
-
-        public DetailsViewModel ToDetailsVM(Sportslabs db)
-        {
-            var detailsVM = new DetailsViewModel
-            {
-                ID = this.ID,
-                Name = this.Name,
-                Country = this.Country,
-                Eliminated = this.Eliminated,
-                LogoLink = $"https://img.uefa.com/imgml/TP/teams/logos/70x70/{this.ID}.png",
-                ProfileLink = $"https://img.uefa.com/imgml/TP/teams/logos/70x70/{this.ID}.png"
-            };
-
-            foreach(var team in db.Teams)
-            {
-                if (!detailsVM.CountryList.Contains(team.Country))
-                    detailsVM.CountryList.Add(team.Country);
-            }
-
-            return detailsVM;
-        }
     }
 }
